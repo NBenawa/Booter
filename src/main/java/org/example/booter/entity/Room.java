@@ -3,6 +3,7 @@ package org.example.booter.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="rooms")
 public class Room {
     @Id
     @Column(name="ROOM_ID")
@@ -17,4 +18,14 @@ public class Room {
 
     @Column(name="BED_INFO")
     private String bedInfo;
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "room_id=" + room_id +
+                ", name='" + name + '\'' +
+                ", roomNumber='" + roomNumber + '\'' +
+                ", bedInfo='" + bedInfo + '\'' +
+                '}';
+    }
 }
