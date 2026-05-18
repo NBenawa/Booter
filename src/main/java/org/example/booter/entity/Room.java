@@ -29,6 +29,9 @@ public class Room {
                 '}';
     }
 
+    public int getId() {
+        return room_id;
+    }
     public String getName() {
         return name;
     }
