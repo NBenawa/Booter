@@ -5,31 +5,30 @@ import org.example.booter.entity.Reservation;
 import org.example.booter.entity.Room;
 import org.example.booter.repository.GuestRepository;
 import org.example.booter.repository.ReservationRepository;
-import org.example.booter.repository.RoomRespository;
+import org.example.booter.repository.RoomRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Component
 public class CLRunner implements CommandLineRunner {
 
-    private final RoomRespository roomRespository;
+    private final RoomRepository roomRepository;
     private final GuestRepository guestRepository;
     private final ReservationRepository reservationRepository;
 
-    public CLRunner(RoomRespository roomRespository, GuestRepository guestRepository, ReservationRepository reservationRepository) {
-        this.roomRespository = roomRespository;
+    public CLRunner(RoomRepository roomRepository, GuestRepository guestRepository, ReservationRepository reservationRepository) {
+        this.roomRepository = roomRepository;
         this.guestRepository = guestRepository;
         this.reservationRepository = reservationRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        List<Room> rooms = this.roomRespository.findAll();
-        Optional<Room> room = this.roomRespository.findByRoomNumberIgnoreCase("p1");
+        List<Room> rooms = this.roomRepository.findAll();
+        Optional<Room> room = this.roomRepository.findByRoomNumberIgnoreCase("p1");
         System.out.println(room);
         rooms.forEach(System.out::println);
 

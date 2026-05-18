@@ -1,6 +1,6 @@
 package org.example.booter.controller;
 
-import org.example.booter.repository.RoomRespository;
+import org.example.booter.repository.RoomRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/rooms")
 public class RoomController {
 
-    private final RoomRespository roomRespository;
+    private final RoomRepository roomRepository;
 
-    public RoomController(RoomRespository roomRespository) {
-        this.roomRespository = roomRespository;
+    public RoomController(RoomRepository roomRepository) {
+        this.roomRepository = roomRepository;
     }
 
     @GetMapping
     public String rooms(Model model) {
-        model.addAttribute("rooms", this.roomRespository.findAll());
+        model.addAttribute("rooms", this.roomRepository.findAll());
         return "rooms";
     }
 }
