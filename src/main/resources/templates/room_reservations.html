@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Reservations</span>
+        </div>
+    </nav>
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Room ID</th>
+                <th>Guest ID</th>
+                <th>Reservation Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reservation : ${reservations}">
+                <td th:text="${reservation.getRoomId()}"></td>
+                <td th:text="${reservation.getGuestId()}"></td>
+                <td th:text="${reservation.getResDate()}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <form action="/reservations" method="get">
+            <input class="form-control" type="date" name="date" th:value="${date != null ? date : today}" />
+            <input class="btn btn-success" type="submit" value="Filter" />
+        </form>
+    </div>
+</body>
+</html>
