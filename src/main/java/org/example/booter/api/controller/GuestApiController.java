@@ -1,6 +1,7 @@
 package org.example.booter.api.controller;
 
 import org.example.booter.entity.Guest;
+import org.example.booter.exceptionHandler.GuestNotFoundException;
 import org.example.booter.repository.GuestRepository;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,12 +23,13 @@ public class GuestApiController {
     }
 
     @GetMapping("/{id}")
-    public Guest guest(@PathVariable("id") Integer id) {
+    public Guest guest(@PathVariable("id") Integer id) throws GuestNotFoundException {
         Optional<Guest> guest = this.guestRepository.findById(id);
         if (!guest.isEmpty()) {
             return guest.get();
+        } else {
+            throw new GuestNotFoundException("Guest Not Found!");
         }
-        return null;
     }
 
     @PostMapping
