@@ -2,6 +2,9 @@ package org.example.booter.entity;
 
 import jakarta.persistence.*;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Entity
 @Table(name = "guests")
 public class Guest {
@@ -30,6 +33,30 @@ public class Guest {
 
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
+
+    public Guest() {
+
+    }
+    public Guest(String lastName, String firstName, String email, String phone) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.emailAddress = email;
+        this.phoneNumber = phone;
+    }
+
+    public static Guest convertToGuest(String args) {
+        Pattern p = Pattern.compile("lastName='(.*?)'.*firstName='(.*?)'.*emailAddress='(.*?)'.*phoneNumber='(.*?)'");
+        Matcher m = p.matcher(args);
+        Guest guest = null;
+        if (m.find()) {
+            String lastName = m.group(1);
+            String firstName = m.group(2);
+            String email = m.group(3);
+            String phone = m.group(4);
+            guest = new Guest(lastName, firstName, email, phone);
+        }
+        return guest;
+    }
 
     @Override
     public String toString() {

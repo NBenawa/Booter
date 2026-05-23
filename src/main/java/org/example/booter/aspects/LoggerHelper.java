@@ -6,7 +6,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.example.booter.entity.Guest;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 
 @Component
